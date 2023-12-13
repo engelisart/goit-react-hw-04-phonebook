@@ -34,7 +34,7 @@ export const App = () => {
     if (copyContact) {
       alert(`${contact.name} is already in contacts.`);
     } else {
-      setContacts([{ ...contact, id: nanoid() }, ...contacts]);
+      return setContacts([...contacts, { id: nanoid(), ...contact }]);
     }
   };
 
@@ -50,7 +50,9 @@ export const App = () => {
   };
 
   const handleDeleteContact = contactId => {
-    setContacts(contacts.filter(contact => contact.id !== contactId));
+    let newcontacts = contacts.filter(cont => cont.id !== contactId);
+
+    setContacts([...newcontacts]);
   };
 
   const filteredContacts = getFilteredContacts();
